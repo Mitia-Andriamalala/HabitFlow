@@ -1,0 +1,701 @@
+/* ========================================
+   ANIMATIONS.CSS - Animations et micro-interactions
+   ======================================== */
+
+/* ========================================
+   KEYFRAMES
+   ======================================== */
+
+/* Animation de celebration */
+@keyframes celebrate {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Confettis lors de milestone */
+@keyframes confetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Pulse pour notifications */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Shake pour erreur */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+}
+
+/* Slide in from bottom */
+@keyframes slideInBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Slide up (for modals) */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade out */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Shimmer effect (for progress bar) */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Bounce */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Float */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Scale in */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Wiggle */
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+
+/* Glow */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--primary);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--primary);
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Animation de completion d'habitude */
+.habit-item.just-completed {
+  animation: celebrate 0.5s ease;
+}
+
+/* Animation de notification badge */
+.notification-badge {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Animation d'erreur */
+.error-shake {
+  animation: shake 0.3s ease;
+}
+
+/* Slide in from bottom */
+.slide-in-bottom {
+  animation: slideInBottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fade in */
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Fade out */
+.fade-out {
+  animation: fadeOut 0.3s ease;
+}
+
+/* Bounce */
+.bounce {
+  animation: bounce 0.6s ease;
+}
+
+/* Float */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Scale in */
+.scale-in {
+  animation: scaleIn 0.3s ease;
+}
+
+/* Wiggle */
+.wiggle {
+  animation: wiggle 0.5s ease;
+}
+
+/* Glow effect */
+.glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* ========================================
+   MODAL ANIMATIONS
+   ======================================== */
+
+.modal-overlay {
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.closing {
+  animation: fadeOut 0.2s ease;
+}
+
+.modal-overlay.closing .modal {
+  animation: slideInBottom 0.3s cubic-bezier(0.4, 0, 0.2, 1) reverse;
+}
+
+/* ========================================
+   TOAST ANIMATIONS
+   ======================================== */
+
+.toast {
+  animation: slideInBottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toast.hiding {
+  animation: slideInBottom 0.3s cubic-bezier(0.4, 0, 0.2, 1) reverse;
+}
+
+/* ========================================
+   CONFETTI PARTICLES
+   ======================================== */
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  animation: confetti 3s ease-out forwards;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.confetti:nth-child(1) {
+  background: var(--primary);
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.confetti:nth-child(2) {
+  background: var(--success);
+  left: 20%;
+  animation-delay: 0.1s;
+}
+
+.confetti:nth-child(3) {
+  background: var(--warning);
+  left: 30%;
+  animation-delay: 0.2s;
+}
+
+.confetti:nth-child(4) {
+  background: var(--error);
+  left: 40%;
+  animation-delay: 0.3s;
+}
+
+.confetti:nth-child(5) {
+  background: var(--primary-light);
+  left: 50%;
+  animation-delay: 0.4s;
+}
+
+.confetti:nth-child(6) {
+  background: var(--primary);
+  left: 60%;
+  animation-delay: 0.5s;
+}
+
+.confetti:nth-child(7) {
+  background: var(--success);
+  left: 70%;
+  animation-delay: 0.6s;
+}
+
+.confetti:nth-child(8) {
+  background: var(--warning);
+  left: 80%;
+  animation-delay: 0.7s;
+}
+
+.confetti:nth-child(9) {
+  background: var(--error);
+  left: 90%;
+  animation-delay: 0.8s;
+}
+
+/* ========================================
+   HOVER EFFECTS
+   ======================================== */
+
+/* Card hover lift */
+.card-hover-lift {
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Button hover scale */
+.btn-hover-scale {
+  transition: transform var(--transition-base);
+}
+
+.btn-hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Icon hover rotate */
+.icon-hover-rotate {
+  transition: transform var(--transition-base);
+}
+
+.icon-hover-rotate:hover {
+  transform: rotate(15deg);
+}
+
+/* Icon hover bounce */
+.icon-hover-bounce:hover {
+  animation: bounce 0.6s ease;
+}
+
+/* ========================================
+   LOADING STATES
+   ======================================== */
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary) 25%,
+    var(--bg-secondary) 50%,
+    var(--bg-tertiary) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Spinner */
+.spinner {
+  animation: spin 0.8s linear infinite;
+}
+
+/* Dots loading */
+.loading-dots {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.loading-dots span {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--primary);
+  border-radius: 50%;
+  animation: dot-bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes dot-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   TRANSITIONS
+   ======================================== */
+
+/* Smooth color transition */
+.smooth-color {
+  transition: color var(--transition-base), background-color var(--transition-base);
+}
+
+/* Smooth transform */
+.smooth-transform {
+  transition: transform var(--transition-base);
+}
+
+/* Smooth all */
+.smooth-all {
+  transition: all var(--transition-base);
+}
+
+/* ========================================
+   STREAK ANIMATIONS
+   ======================================== */
+
+/* Fire emoji animation */
+.streak-fire {
+  display: inline-block;
+  animation: fire-flicker 2s ease-in-out infinite;
+}
+
+@keyframes fire-flicker {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  25% {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+  50% {
+    transform: scale(0.95);
+    filter: brightness(0.9);
+  }
+  75% {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+}
+
+/* Milestone celebration */
+.milestone-achieved {
+  animation: celebrate 0.6s ease, glow 2s ease-in-out 3;
+}
+
+/* ========================================
+   VIEW TRANSITIONS
+   ======================================== */
+
+/* View fade transition */
+.view-container {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-slow);
+}
+
+.view-container.active {
+  opacity: 1;
+  pointer-events: auto;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Tab transition */
+.nav-tab {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-tab::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width var(--transition-base), left var(--transition-base);
+}
+
+.nav-tab.active::before {
+  width: 100%;
+  left: 0;
+}
+
+/* ========================================
+   PROGRESS BAR ANIMATIONS
+   ======================================== */
+
+/* Progress fill animation */
+.progress-fill {
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Shimmer effect on progress bar */
+.progress-fill::after {
+  animation: shimmer 2s infinite;
+}
+
+/* ========================================
+   CHECKBOX ANIMATIONS
+   ======================================== */
+
+.habit-checkbox {
+  position: relative;
+  overflow: hidden;
+}
+
+.habit-checkbox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+  transform: scale(0);
+  transition: transform var(--transition-base);
+}
+
+.habit-checkbox:active::before {
+  transform: scale(1);
+  transition: transform 0s;
+}
+
+/* Checkmark animation */
+.habit-checkbox.checked::after {
+  animation: scaleIn 0.2s ease;
+}
+
+/* ========================================
+   NOTIFICATION BELL ANIMATION
+   ======================================== */
+
+.notification-bell {
+  display: inline-block;
+  transform-origin: top center;
+}
+
+.notification-bell.ringing {
+  animation: bell-ring 0.5s ease-in-out;
+}
+
+@keyframes bell-ring {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: rotate(15deg);
+  }
+  20%, 40%, 60%, 80% {
+    transform: rotate(-15deg);
+  }
+}
+
+/* ========================================
+   MOTIVATIONAL QUOTE ANIMATION
+   ======================================== */
+
+.motivational-quote {
+  animation: fadeIn 0.5s ease;
+}
+
+.quote-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ========================================
+   STAT CARD ANIMATIONS
+   ======================================== */
+
+.stat-card {
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stat-value {
+  display: inline-block;
+}
+
+.stat-card.updating .stat-value {
+  animation: bounce 0.6s ease;
+}
+
+/* ========================================
+   HEATMAP CELL ANIMATIONS
+   ======================================== */
+
+.heatmap-cell {
+  transition: all var(--transition-base);
+  transform-origin: center;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.heatmap-cell.today {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* ========================================
+   EMPTY STATE ANIMATION
+   ======================================== */
+
+.empty-state {
+  animation: fadeIn 0.5s ease;
+}
+
+.empty-state-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ========================================
+   DRAG AND DROP (Future feature)
+   ======================================== */
+
+.habit-item.dragging {
+  opacity: 0.5;
+  transform: rotate(5deg);
+}
+
+.habit-item.drag-over {
+  border-color: var(--primary);
+  background: var(--bg-tertiary);
+}
+
+/* ========================================
+   SUCCESS ANIMATIONS
+   ======================================== */
+
+.success-checkmark {
+  display: inline-block;
+  animation: success-pop 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+@keyframes success-pop {
+  0% {
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+/* ========================================
+   DELETE ANIMATION
+   ======================================== */
+
+.item-deleting {
+  animation: fadeOut 0.3s ease forwards, slide-out-right 0.3s ease forwards;
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

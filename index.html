@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HabitFlow - Suivez vos habitudes quotidiennes avec une interface minimaliste et motivante">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="HabitFlow">
+
+    <title>HabitFlow - Tracker d'Habitudes</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+
+    <!-- Manifest PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-to-content">Aller au contenu principal</a>
+
+    <!-- Main App Container -->
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="app-title">
+                <span class="app-icon">
+                    <svg class="icon icon-xl" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                    </svg>
+                </span>
+                HabitFlow
+            </h1>
+            <div class="app-actions">
+                <button class="btn-icon btn-ghost" id="btn-notifications" aria-label="Notifications" title="Notifications">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                    </svg>
+                </button>
+                <button class="btn-icon btn-ghost" id="btn-settings" aria-label="Paramètres" title="Paramètres">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                </button>
+                <button class="btn-icon btn-ghost" id="btn-theme-toggle" aria-label="Changer de thème" title="Changer de thème">
+                    <span id="theme-icon">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs" role="tablist">
+            <button class="nav-tab active" data-view="today" role="tab" aria-selected="true">
+                Aujourd'hui
+            </button>
+            <button class="nav-tab" data-view="stats" role="tab" aria-selected="false">
+                Statistiques
+            </button>
+            <button class="nav-tab" data-view="calendar" role="tab" aria-selected="false">
+                Calendrier
+            </button>
+            <button class="nav-tab" data-view="archived" role="tab" aria-selected="false">
+                Archives
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main-content" class="app-main">
+
+            <!-- Today View -->
+            <div id="view-today" class="view-container active">
+
+                <!-- Progress Summary -->
+                <div class="progress-summary card">
+                    <div class="summary-header">
+                        <h2 class="summary-date" id="current-date">Chargement...</h2>
+                        <p class="summary-count" id="completion-count">0/0 complétées aujourd'hui</p>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="daily-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Streak Danger Alert -->
+                <div id="streak-danger-alert" class="streak-danger-alert" style="display: none;">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <h3 class="alert-title">Streaks en danger !</h3>
+                        <p class="alert-message" id="streak-danger-message"></p>
+                    </div>
+                    <button class="alert-close" onclick="UI.dismissStreakAlert()">✕</button>
+                </div>
+
+                <!-- Habits List -->
+                <div class="habits-list" id="habits-list">
+                    <!-- Habits will be dynamically added here -->
+                </div>
+
+                <!-- Add Habit Button -->
+                <button class="btn btn-primary btn-add-habit" id="btn-add-habit">
+                    <span>+</span>
+                    Ajouter une habitude
+                </button>
+
+                <!-- Motivational Quote -->
+                <div class="motivational-quote" id="motivational-quote">
+                    <span class="quote-icon">
+                        <svg class="icon icon-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                    </span>
+                    <p class="quote-text">Le succès est la somme de petits efforts répétés jour après jour.</p>
+                </div>
+            </div>
+
+            <!-- Stats View -->
+            <div id="view-stats" class="view-container">
+                <h2 class="view-title">Statistiques</h2>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid" id="stats-grid">
+                    <!-- Stats cards will be dynamically added here -->
+                </div>
+
+                <!-- Heatmap -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Heatmap annuelle</h3>
+                    </div>
+                    <div class="heatmap-container" id="heatmap-container">
+                        <!-- Heatmap will be dynamically generated here -->
+                    </div>
+                </div>
+
+                <!-- Habits Details -->
+                <div id="habits-stats-list">
+                    <!-- Individual habit stats will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Calendar View -->
+            <div id="view-calendar" class="view-container">
+                <h2 class="view-title">Calendrier</h2>
+                <div class="calendar-container" id="calendar-container">
+                    <!-- Calendar will be dynamically generated here -->
+                </div>
+            </div>
+
+            <!-- Archived View -->
+            <div id="view-archived" class="view-container">
+                <h2 class="view-title">Habitudes Archivées</h2>
+                <div class="archived-list" id="archived-list">
+                    <!-- Archived habits will be dynamically added here -->
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modal: Add/Edit Habit -->
+    <div class="modal-overlay" id="modal-habit" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-habit-title">Nouvelle Habitude</h3>
+                <button class="modal-close" id="modal-habit-close" aria-label="Fermer">
+                    <span>✕</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="habit-form">
+                    <!-- Habit Name -->
+                    <div class="form-group">
+                        <label for="habit-name" class="form-label">Nom de l'habitude *</label>
+                        <input
+                            type="text"
+                            id="habit-name"
+                            class="form-input"
+                            placeholder="Ex: Boire 2L d'eau"
+                            maxlength="50"
+                            required
+                        >
+                    </div>
+
+                    <!-- Emoji Picker -->
+                    <div class="form-group">
+                        <label class="form-label">Icône</label>
+                        <div class="emoji-picker" id="emoji-picker">
+                            <!-- Icons will be dynamically added here -->
+                        </div>
+                        <input type="hidden" id="habit-icon" value="star">
+                    </div>
+
+                    <!-- Color Picker -->
+                    <div class="form-group">
+                        <label class="form-label">Couleur</label>
+                        <div class="color-picker" id="color-picker">
+                            <!-- Colors will be dynamically added here -->
+                        </div>
+                        <input type="hidden" id="habit-color" value="#3498db">
+                    </div>
+
+                    <!-- Frequency -->
+                    <div class="form-group">
+                        <label class="form-label">Fréquence</label>
+                        <div class="frequency-options">
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="daily" checked>
+                                <span>Tous les jours</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="specific">
+                                <span>Jours spécifiques</span>
+                            </label>
+                        </div>
+                        <div class="days-selector" id="days-selector" style="display: none;">
+                            <!-- Day checkboxes will be added here -->
+                        </div>
+                    </div>
+
+                    <!-- Reminder Time -->
+                    <div class="form-group">
+                        <label for="reminder-time" class="form-label">Rappel (optionnel)</label>
+                        <input type="time" id="reminder-time" class="form-input">
+                    </div>
+
+                    <input type="hidden" id="habit-id" value="">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-cancel-habit">Annuler</button>
+                <button class="btn btn-primary" id="btn-save-habit">Créer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Settings -->
+    <div class="modal-overlay" id="modal-settings" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Paramètres</h3>
+                <button class="modal-close" id="modal-settings-close" aria-label="Fermer">
+                    <span>✕</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Settings content will be added here -->
+                <div class="settings-section">
+                    <h4>Préférences</h4>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="setting-notifications" checked>
+                            Activer les notifications
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="setting-sounds" checked>
+                            Activer les sons
+                        </label>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h4>Rappels</h4>
+                    <div class="setting-item">
+                        <label for="setting-daily-reminder-time">Rappel quotidien</label>
+                        <input type="time" id="setting-daily-reminder-time" class="form-input" value="20:00">
+                        <p class="setting-description">Heure du rappel quotidien pour vérifier vos habitudes</p>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h4>Informations</h4>
+                    <div class="setting-item">
+                        <label>Espace de stockage utilisé</label>
+                        <div class="storage-info">
+                            <div class="storage-bar">
+                                <div class="storage-fill" id="storage-fill" style="width: 0%"></div>
+                            </div>
+                            <p class="storage-text" id="storage-text">0 Ko / 5 Mo</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h4>Gestion des données</h4>
+                    <button class="btn btn-secondary" id="btn-export-data">Exporter les données</button>
+                    <button class="btn btn-secondary" id="btn-import-data">Importer les données</button>
+                    <button class="btn btn-secondary" id="btn-reset-data">Réinitialiser</button>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast" style="display: none;">
+        <span class="toast-icon" id="toast-icon">✓</span>
+        <span class="toast-message" id="toast-message">Message</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/icons.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/habit.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/habitManager.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/stats.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => console.log('Service Worker registered'))
+                    .catch(error => console.log('Service Worker registration failed:', error));
+            });
+        }
+    </script>
+</body>
+</html>

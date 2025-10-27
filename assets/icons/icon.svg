@@ -1,0 +1,27 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded rectangle -->
+  <rect width="512" height="512" rx="100" fill="url(#bgGradient)"/>
+
+  <!-- Star icon in the center -->
+  <path
+    d="M256 100 L286 190 L380 190 L305 245 L335 335 L256 280 L177 335 L207 245 L132 190 L226 190 Z"
+    fill="white"
+    stroke="white"
+    stroke-width="4"
+    stroke-linejoin="round"
+  />
+
+  <!-- Small decorative stars -->
+  <circle cx="140" cy="140" r="8" fill="white" opacity="0.6"/>
+  <circle cx="372" cy="140" r="8" fill="white" opacity="0.6"/>
+  <circle cx="140" cy="372" r="8" fill="white" opacity="0.6"/>
+  <circle cx="372" cy="372" r="8" fill="white" opacity="0.6"/>
+</svg>
